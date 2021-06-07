@@ -1,0 +1,22 @@
+name: Build nodejs image and push to GutHub Container Registry
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: docker login
+      env:
+        DOCKER_USER: ${{ secrets.USER_NAME }}   
+        DOCKER_PASSWORD: ${{ secrets.PAT }}  
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        
+    - name: build the Docker image
+      run: docker build . --file Dockerfile -t ghcr.io/zina-420001498/nodejs:1.0.0
+
+    - name: docker push
+      run: |
+        docker push ghcr.io/zina-420001498/nodejs:1.0.0
