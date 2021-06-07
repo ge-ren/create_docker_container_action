@@ -9,11 +9,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: docker login
       env:
-        DOCKER_USER: ${{ github.actor }}   
-        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}  
+        USERNAME: ${{ github.actor }}   
+        CR_PAT: ${{ secrets.PAT }}  
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        
+        echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+                
     - name: build the Docker image
       run: docker build . --file Dockerfile -t ghcr.io/zina-420001498/nodejs:1.0.0
 
