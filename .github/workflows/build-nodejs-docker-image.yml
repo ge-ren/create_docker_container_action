@@ -19,4 +19,5 @@ jobs:
 
     - name: docker push
       run: |
+        docker push ghcr.io/ge-ren/nodejs:1.0.0 
         docker push ghcr.io/zina-420001498/nodejs:1.0.0
