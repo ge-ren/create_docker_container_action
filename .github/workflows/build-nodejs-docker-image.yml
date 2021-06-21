@@ -10,7 +10,6 @@ jobs:
     - name: docker login
       env:
         USER_NAME: ${{ github.actor }}   
-        CR_PAT: ${{ secrets.PAT }} 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo $GITHUB_TOKEN | docker login ghcr.io -u USER_NAME --password-stdin
